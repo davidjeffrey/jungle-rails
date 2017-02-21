@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to the Jungle</h1>
+    <p>
+      You have successfully ordered some stuff,
+      <% @cart_total = 0 %>
+      <% @line_items.each do |line_item| %>
+        <tr>
+          <td>
+            <%= line_item.product.image.tiny %>
+          </td>
+          <td>
+            <h4><%= line_item.product.name %></h4>
+            <br>
+            <p><%= line_item.product.description %></p>
+          </td>
+          <td>
+            <%= line_item.product.price %>
+          </td>
+          <td>
+            <%= item_total %>
+          </td>
+        </tr>
+      <% end %>
+      your username is: <%= @user.email %>.<br>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

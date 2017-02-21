@@ -53,7 +53,9 @@ class OrdersController < ApplicationController
         )
       end
     end
-    order.save!
+    if order.save!
+      UserMailer.order_confirmation(order).deliver_now
+    end
     order
   end
 
