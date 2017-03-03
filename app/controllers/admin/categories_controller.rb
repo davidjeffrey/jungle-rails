@@ -1,4 +1,8 @@
 class Admin::CategoriesController < ApplicationController
+
+  http_basic_authenticate_with name: ENV['ADMIN_NAME'].to_s, password: ENV['ADMIN_PASS'].to_s
+  before_filter :authorize
+
   def index
     @categories = Category.order(id: :desc).all
   end
@@ -17,11 +21,10 @@ class Admin::CategoriesController < ApplicationController
     end
   end
 
-  private
-
   def category_params
     params.require(:category).permit(
       :name
     )
   end
+
 end

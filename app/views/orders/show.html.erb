@@ -5,7 +5,9 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+    <h4>Thanks For Ordering!</h4>
+    <h4>A confirmation email has been sent to: <strong><%= @order.email %></strong></h4>
+
   </div>
 
   <div class="panel panel-default items">
@@ -13,24 +15,23 @@
       <thead>
         <tr>
           <th colspan="2">Product</th>
-          <th>Unit Price</th>
-          <th>Quantity</th>
           <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
         </tr>
       </thead>
       <tbody>
-        <% @cart_total = 0 %>
-        <% @line_items.each do |line_item| %>
-          <%= render 'item', line_item: line_item %>
+        <% @order.line_items.each do |line_item| %>
+          <%= render 'orders/item', line_item: line_item %>
         <% end %>
       </tbody>
       <tfoot>
         <tr>
           <th colspan="4">
-            TOTAL:
+            Order Total:
           </th>
           <th>
-            <%= @cart_total %>
+            <%= @order.total %>
           </th>
         </tr>
       </tfoot>
